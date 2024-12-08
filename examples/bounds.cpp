@@ -70,4 +70,3 @@ int main()
         std::cout << "Out of range exception caught" << std::endl;
     }
 }
-

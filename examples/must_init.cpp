@@ -6,6 +6,8 @@
 
 #include "../safe/must_init.h"
 
+#include "safe_int.h"
+
 int main()
 {
     // safe::must_init<int> a; // This line will not compile
@@ -46,7 +48,7 @@ int main()
     // also works with enums
     enum color
     {
-        red , blue , yellow
+        red, blue, yellow
     };
     safe::must_init<color> col = red;
     std::cout << static_cast<color>(col) << std::endl;

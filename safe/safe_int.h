@@ -9,6 +9,8 @@
 
 namespace safe
 {
+    /// safe_int: A wrapper around an integral type that throws on overflow/underflow
+    /// @tparam T The underlying signed integral type
     template <typename T>
     class safe_int
     {

@@ -14,16 +14,24 @@ namespace safe
     class must_init
     {
         T base;
+
     public:
         // explicitly delete default constructor - must initialize with some value
         must_init() = delete;
 
         // ctors
         template <typename... Args>
-        must_init(Args&&... args) : base(std::forward<Args>(args)...) {}
-        must_init(const T& t) : base(t) {}
-        must_init(const must_init& other) : base(other.base) {}
-        must_init& operator=(const must_init& other) { base = other.base; return *this; }
+        must_init(Args&&... args) : base(std::forward<Args>(args)...)
+        {
+        }
+
+        must_init(const T& t) : base(t)
+        {
+        }
+
+        must_init(const must_init& other) = default;
+
+        must_init& operator=(const must_init& other) = default;
 
         // explicit conversion to underlying type
         explicit operator T() const { return base; }
@@ -33,9 +41,20 @@ namespace safe
         must_init operator-() const { return -base; }
 
         // increment/decrement
-        must_init& operator++() { ++base; return *this; }
+        must_init& operator++()
+        {
+            ++base;
+            return *this;
+        }
+
         must_init operator++(int) { return base++; }
-        must_init& operator--() { --base; return *this; }
+
+        must_init& operator--()
+        {
+            --base;
+            return *this;
+        }
+
         must_init operator--(int) { return base--; }
 
         // binary ops
