@@ -1,11 +1,10 @@
 file(GLOB headers ../safe/*.h)
-file(GLOB sources *.cpp)
 
 add_executable(must_init ${headers} must_init.cpp)
-target_link_directories(must_init PUBLIC ../safe)
+target_include_directories(must_init PRIVATE ${CMAKE_SOURCE_DIR}/safe)
 
 add_executable(bounds ${headers} bounds.cpp)
-target_link_directories(bounds PUBLIC ../safe)
+target_include_directories(bounds PRIVATE ${CMAKE_SOURCE_DIR}/safe)
 
 add_executable(safe_int ${headers} safe_int.cpp)
-target_link_directories(safe_int PUBLIC ../safe)
+target_include_directories(safe_int PRIVATE ${CMAKE_SOURCE_DIR}/safe)
